@@ -48,3 +48,19 @@ defines a small river-crossing MDP and shows how to pass `classify`, `cost`,
 `start`, and the penalty scales explicitly when the reward-based defaults do
 not fit — for example, action-dependent costs where a careful move is slow
 but safe and a long jump is fast but risky.
+
+## 5. Duckietown: an online SSP over a continuous driving MDP
+
+[`05_duckietown.jl`](https://github.com/ai-vnv/DORASolvers.jl/blob/main/examples/05_duckietown.jl)
+drives [Duckietown.jl](https://github.com/ai-vnv/Duckietown.jl) — a
+lane-following MDP with a stop sign and a crossing duck, validated
+decision-by-decision against its Python reference — with DORA under a
+receding horizon. Three ideas bridge the continuous world to a tabular SSP:
+a measured-deterministic transition (fixed per-decision RNG), macro actions
+that hold one command for eight physics decisions, and a state key that
+pairs discretized pose with lap progress, so the loop becomes monotone
+progress toward an absorbing goal. The solver call is the same explicit
+`start` / `classify` / `cost` / `key` pattern as example 4. The full case
+study — the determinism measurement, the timescale ablation, and a rendered
+lap — lives in the Duckietown.jl repository as
+[`notebooks/DORA_on_Duckietown.jl`](https://github.com/ai-vnv/Duckietown.jl/blob/main/notebooks/DORA_on_Duckietown.jl).

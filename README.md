@@ -105,13 +105,21 @@ Worked examples are in [`examples/`](examples/):
    chance-constrained variant
 4. [`04_custom_mdp.jl`](examples/04_custom_mdp.jl) — a custom MDP with
    explicit goal/failure classification and action-dependent costs
+5. [`05_duckietown.jl`](examples/05_duckietown.jl) — DORA driving
+   [Duckietown.jl](https://github.com/ai-vnv/Duckietown.jl), a continuous
+   lane-following MDP with a stop sign and a crossing duck, bridged to a
+   tabular SSP (measured-deterministic kernel, macro actions, progress-keyed
+   states) and re-planned under a receding horizon
 
-Run them from the repository root with
+Run examples 1–4 from the repository root with
 
 ```bash
 julia --project=examples -e 'using Pkg; Pkg.develop(path="."); Pkg.instantiate()'
 julia --project=examples examples/01_gridworld_quickstart.jl
 ```
+
+Example 5 installs its own scratch project (Duckietown.jl is not in the
+General registry yet); the two commands are in its header.
 
 ## Package contents
 
